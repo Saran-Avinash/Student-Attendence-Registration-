@@ -108,7 +108,7 @@ const GetAttendence = () => {
                                     let count = 0;
                                     return (
                                         <tr key={j++}>
-                                            <td>{column.SNO}</td>
+                                            <td>{j}</td>
                                             <td>{column.roll_no}</td>
                                             {filteredColumns.map(date => {
                                                 if(column[date] == 'Present'){

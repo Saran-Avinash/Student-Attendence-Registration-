@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const util = require('util');
  
 
@@ -17,6 +17,7 @@ const query = util.promisify(connection.query).bind(connection);
 connection.connect((err)=> {
   if(err){
     console.log("error connecting to db");
+    console.log(err);
     return;
   }
   else{

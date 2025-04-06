@@ -76,7 +76,7 @@ const Table = () => {
                             <tr key={student.roll_no} > 
                                 <td>{i++}</td>
                                 <td>{student.roll_no}</td>
-                                <td>{student.section}</td>
+                                <td>{student.class}</td>
                                  <td>
                                     <input id={student.roll_no} type="checkbox" onChange={()=> {
                                         markAbsentees(student.roll_no);

@@ -41,8 +41,9 @@ app.post('/put', async (req, res)=> {
      try{
      const query = `alter table attendence add column \`${columnName}\` varchar(10)`;
      const rows = await db.query(query);
-     }
-     catch(error){
+     // Mark present for all students
+    }
+    catch(error){
         if(error){
             res.sendStatus(404);
         }
@@ -50,9 +51,8 @@ app.post('/put', async (req, res)=> {
             res.sendStatus(200);
         }
     }
-
-     // Mark present for all students
     updateAttendenceStatus(req.body, req, res);
+
 
      
 })
@@ -80,7 +80,14 @@ app.post('/getAttendence', async (req, res)=> {
     try{
         const filteredColumns = availabeColumns.filter(column => column >= startDate && column <= endDate);
         console.log(filteredColumns);
-        const query = `SELECT SNO, roll_no, ${filteredColumns.map((column)=> {return `\`${column}\``}).join(', ')} from attendence`;
+        if (filteredColumns.length === 0) {
+            res.status(400).json({ message: 'No data found in given date range.' });
+            return;
+        }
+    
+        const selectedColumns = filteredColumns.map(column => `\`${column}\``).join(', ');
+        const query = `SELECT roll_no${selectedColumns ? ', ' + selectedColumns : ''} FROM attendence`;
+        //const query = `SELECT  roll_no, ${filteredColumns.map((column)=> {return `\`${column}\``}).join(', ')} from attendence`;
         await db.query(query, (error, result) => {
             if(error){
             console.log(error);
