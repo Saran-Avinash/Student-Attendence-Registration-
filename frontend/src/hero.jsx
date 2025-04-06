@@ -13,8 +13,8 @@ const Hero = () => {
                       <h4>Attendence Module for II CSE C</h4>
                  
                 <p className='developer'>Designed and developed By <br />
-                   <a href="">Parthasarathi S  </a><span>,</span>
-                   <a href="">Pravin S </a> <span>,</span>
+                   <a href="">Santhosh P  </a><span>,</span>
+                   <a href="">Sanchay M </a> <span>,</span>
                    <a href="">Saran Avinash B</a>
                 </p>
                </div>
